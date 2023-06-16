@@ -4,9 +4,10 @@
  * @return {boolean}
  */
 const isAnagram = function(s, t) {
+  if (s.length !== t.length) return false;
+
   const originString = s.split("");
-  
-  console.log(originString);
+
   for (let i = 0; i < t.length; i += 1) {
     if (originString.includes(t[i])) {
       const index = originString.indexOf(t[i]);
