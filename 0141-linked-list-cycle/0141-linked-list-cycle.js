@@ -11,13 +11,11 @@
  * @return {boolean}
  */
 const hasCycle = function(head) {
-  let fast = head;
   
-  while (fast && fast.next) {
-    fast = fast.next.next;
+  while (head && head.next) {
+    if (head.val === "X") return true;
+    head.val = "X";
     head = head.next;
-    
-    if (fast === head) return true;
   }
   
   return false;
