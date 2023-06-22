@@ -23,12 +23,6 @@ MyQueue.prototype.pop = function() {
   }
   
   const result = this.queue2.pop();
-  
-  if (this.queue.length === 0) {
-    while (this.queue2.length) {
-      this.queue.push(this.queue2.pop());
-    }
-  }
 
   return result;
 };
@@ -44,12 +38,6 @@ MyQueue.prototype.peek = function() {
   }
   
   const result = this.queue2[this.queue2.length - 1];
-  
-  if (this.queue.length === 0) {
-    while (this.queue2.length) {
-      this.queue.push(this.queue2.pop());
-    }
-  }
 
   return result;
 };
@@ -58,7 +46,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-  return !this.queue.length;
+  return (!this.queue.length && !this.queue2.length);
 };
 
 /** 
