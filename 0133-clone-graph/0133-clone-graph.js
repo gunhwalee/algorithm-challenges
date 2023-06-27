@@ -12,6 +12,7 @@
  */
 const cloneGraph = function(node) {
   // solution
+  if (node === null) return node;
   const map = new Map();
   const traverse = root => {
     if (!map.has(root.val)) {
@@ -22,5 +23,5 @@ const cloneGraph = function(node) {
     return map.get(root.val);
   }
   
-  return node ? traverse(node) : node;
+  return traverse(node);
 };
