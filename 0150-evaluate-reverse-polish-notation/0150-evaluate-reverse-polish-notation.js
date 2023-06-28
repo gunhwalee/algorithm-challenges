@@ -3,6 +3,9 @@
  * @return {number}
  */
 const evalRPN = function(tokens) {
+  // my solution
+  
+  /*
   const operators = ["+", "-", "*", "/"];
   const stack = [];
   
@@ -19,4 +22,26 @@ const evalRPN = function(tokens) {
   }
   
   return stack[0];
+  */
+  
+  // solution
+  const stack = [];
+  const operators = {
+    "+": (a, b) => a + b,
+    "-" : (a, b) => a - b,
+    "*" : (a, b) => a * b,
+    "/" : (a, b) => Math.trunc(a / b),
+  };
+  
+  for (const token of tokens) {
+    if (operators[token]) {
+      const right = stack.pop();
+      const left = stack.pop();
+      stack.push(operators[token](left, right));
+    } else {
+      stack.push(Number(token));
+    }
+  }
+  
+  return stack.pop();
 };
