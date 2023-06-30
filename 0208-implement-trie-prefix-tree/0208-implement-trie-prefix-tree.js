@@ -28,14 +28,13 @@ Trie.prototype.search = function(word) {
   
   for (const char of word) {
     if (!node[char]) {
-      node = null;
-      break;
+      return false;
     } else {
       node = node[char];
     }
   }
   
-  return (node && node.isEnd) ? true : false;
+  return node.isEnd || false;
 };
 
 /** 
@@ -47,14 +46,13 @@ Trie.prototype.startsWith = function(prefix) {
   
   for (const char of prefix) {
     if (!node[char]) {
-      node = null;
-      break;
+      return false;
     } else {
       node = node[char];
     }
   }
 
-  return node ? true : false;
+  return true;
 };
 
 
