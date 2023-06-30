@@ -53,7 +53,7 @@ Trie.prototype.startsWith = function(prefix) {
       node = node[char];
     }
   }
-  console.log("a", node);
+
   return node ? true : false;
 };
 
