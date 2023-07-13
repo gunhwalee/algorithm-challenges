@@ -25,11 +25,10 @@ function DFS(grid, row, col, target, origin) {
 
     if (newRow < 0 || newCol < 0 ||
        newRow >= grid.length ||
-       newCol >= grid[0].length) continue;
+       newCol >= grid[0].length ||
+       grid[newRow][newCol] !== origin) continue;
 
-    if (grid[newRow][newCol] === origin) {
-      grid[newRow][newCol] = target;
-      DFS(grid, newRow, newCol, target, origin);
-    }
+    grid[newRow][newCol] = target;
+    DFS(grid, newRow, newCol, target, origin);
   }
 }
