@@ -5,30 +5,26 @@
  * @param {number} color
  * @return {number[][]}
  */
-const floodFill = function(image, sr, sc, newColor) {
-  if (image[sr][sc] === newColor) return image;
+const floodFill = (image, sr, sc, newColor, color) => {
+  const firstColor = color === undefined ? image[sr][sc] : color;
 
-  const currentColor = image[sr][sc];
+  if (
+    sr < 0 ||
+    sc < 0 ||
+    sr >= image.length ||
+    sc >= image[sr].length ||
+    image[sr][sc] !== firstColor ||
+    image[sr][sc] === newColor
+  ) {
+    return image;
+  }
 
   image[sr][sc] = newColor;
-  DFS(image, sr, sc, newColor, currentColor);
+
+  floodFill(image, sr + 1, sc, newColor, firstColor);
+  floodFill(image, sr - 1, sc, newColor, firstColor);
+  floodFill(image, sr, sc + 1, newColor, firstColor);
+  floodFill(image, sr, sc - 1, newColor, firstColor);
 
   return image;
 };
-
-function DFS(grid, row, col, target, origin) {
-  const directions = [[-1, 0], [1, 0], [0, -1], [0, 1]];
-
-  for (const direction of directions) {
-    const newRow = row + direction[0];
-    const newCol = col + direction[1];
-
-    if (newRow < 0 || newCol < 0 ||
-       newRow >= grid.length ||
-       newCol >= grid[0].length ||
-       grid[newRow][newCol] !== origin) continue;
-
-    grid[newRow][newCol] = target;
-    DFS(grid, newRow, newCol, target, origin);
-  }
-}
