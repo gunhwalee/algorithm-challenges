@@ -11,9 +11,14 @@ const majorityElement = function(nums) {
     map[num] += 1;
   }
 
-  const keys = Object.getOwnPropertyNames(map);
+//   const keys = Object.getOwnPropertyNames(map);
 
-  for (const key of keys) {
-    if (map[key] > nums.length / 2) return key;
+//   for (const key of keys) {
+//     if (map[key] > nums.length / 2) return key;
+//   }
+  for (const key in map) {
+    if (map.hasOwnProperty(key)) {
+      if (map[key] > nums.length / 2) return key;
+    }
   }
 };
