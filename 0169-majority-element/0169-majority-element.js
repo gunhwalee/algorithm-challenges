@@ -10,8 +10,10 @@ const majorityElement = function(nums) {
     
     map[num] += 1;
   }
-  
-  for (const element in map) {
-    if (map[element] > nums.length / 2) return element;
+
+  const keys = Object.getOwnPropertyNames(map);
+
+  for (const key of keys) {
+    if (map[key] > nums.length / 2) return key;
   }
 };
