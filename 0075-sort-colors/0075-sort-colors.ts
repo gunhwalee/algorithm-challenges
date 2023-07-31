@@ -12,10 +12,10 @@ const sortColors = (nums: number[]): void => {
     if (i) counts[i] += counts[i - 1];
   }
   
-  const arr1: number[] = [...nums];
+  const copyNums: number[] = [...nums];
 
-  for (let i = 0; i < arr1.length; i += 1) {
-    const value = arr1[i];
+  for (let i = 0; i < copyNums.length; i += 1) {
+    const value: number = copyNums[i];
     nums[counts[value] - 1] = value;
     counts[value] -= 1;
   }
