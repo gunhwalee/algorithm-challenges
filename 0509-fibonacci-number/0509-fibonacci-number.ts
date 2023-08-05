@@ -1,5 +1,10 @@
 const fib = (n: number): number => {
-  if (n <= 1) return n;
-  
-  return fib(n - 1) + fib(n - 2);
+  const result: number[] = new Array(n + 1).fill(0);
+  result[1] = 1;
+
+  for (let i = 2; i < result.length; i += 1) {
+    result[i] = result[i - 1] + result[i - 2];
+  }
+
+  return result[n];
 };
