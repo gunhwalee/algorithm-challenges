@@ -1,22 +1,22 @@
 const combinationSum = (candidates: number[], target: number): number[][] => {
   const result: number[][] = [];
 
-  const DFS = (candidate: number[], target: number, index: number): void => {
-    const sum = candidate.reduce((acc, cur) => acc + cur, 0);
+  const DFS = (candidate: number[] = [], goal: number = target, index: number = 0): void => {
+    const sum: number = candidate.reduce((acc, cur) => acc + cur, 0);
 
-    if (sum === target) {
+    if (sum === goal) {
       result.push(candidate);
       return;
     }
 
     for (let i = index; i < candidates.length; i += 1) {
-      if (sum + candidates[i] <= target) {
-        DFS([...candidate, candidates[i]], target, i);
+      if (sum + candidates[i] <= goal) {
+        DFS([...candidate, candidates[i]], goal, i);
       }
     }
   };
 
-  DFS([], target, 0);
+  DFS();
 
   return result;
 };
