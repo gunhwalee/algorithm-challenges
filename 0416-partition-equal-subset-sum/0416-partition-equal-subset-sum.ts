@@ -10,8 +10,9 @@ const canPartition = (nums: number[]): boolean => {
   for (let i = 0; i < nums.length; i += 1) {
     for (let j = target; j >= nums[i]; j -= 1) {
       dp[j] = dp[j] || dp[j - nums[i]];
+      if (dp[target]) return true;
     }
   }
 
-  return dp[target] || false;
+  return false;
 };
