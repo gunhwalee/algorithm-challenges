@@ -3,7 +3,7 @@ const canPartition = (nums: number[]): boolean => {
   if (totalSum % 2) return false;
 
   const target: number = totalSum / 2;
-  const dp: boolean[] = [];
+  const dp: boolean[] = new Array(target + 1).fill(false);
   dp[0] = true;
 
   for (let i = 0; i < nums.length; i += 1) {
