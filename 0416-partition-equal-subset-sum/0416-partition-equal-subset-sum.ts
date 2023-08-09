@@ -1,10 +1,9 @@
 const canPartition = (nums: number[]): boolean => {
   const totalSum: number = nums.reduce((acc, cur) => acc + cur, 0);
-  const target: number = totalSum / 2;
-
   if (totalSum % 2) return false;
 
-  const dp: boolean[] = [];
+  const target: number = totalSum / 2;
+  const dp: boolean[] = new Array(target + 1).fill(false);
   dp[0] = true;
 
   for (let i = 0; i < nums.length; i += 1) {
