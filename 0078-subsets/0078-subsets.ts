@@ -4,10 +4,11 @@ const subsets = (nums: number[]): number[][] => {
   const helper = (array: number[], index: number): void => {
     if (index > nums.length) return;
 
-    result.push(array);    
+    result.push([...array]);    
     for (let i = index; i < nums.length; i += 1) {
-      const newArray: number[] = [...array, nums[i]];
-      helper(newArray, i + 1);
+      array.push(nums[i]);
+      helper(array, i + 1);
+      array.pop();
     }
   };
 
