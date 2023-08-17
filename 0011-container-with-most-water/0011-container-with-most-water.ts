@@ -1,19 +1,16 @@
-function maxArea(height: number[]): number {
+const maxArea = (height: number[]): number => {
   let start: number = 0;
   let end: number = height.length - 1;
-  const calculator = (a: number, b: number): number => {
-    return (b - a) * Math.min(height[a], height[b]);
-  };
-  let maxWater: number = calculator(start, end);
+  let maxWater: number = 0;
 
   while (start < end) {
-    if (height[start] < height[end]) {
-      start += 1;
-      maxWater = Math.max(maxWater, calculator(start, end));
-    } else {
-      end -= 1;
-      maxWater = Math.max(maxWater, calculator(start, end));
-    }
+    const containerHeight: number = Math.min(height[start], height[end]);
+    const containerWidth: number = end - start;
+
+    maxWater = Math.max(maxWater, containerWidth * containerHeight);
+
+    if (height[start] < height[end]) start += 1;
+    else end -= 1;
   }
 
   return maxWater;
