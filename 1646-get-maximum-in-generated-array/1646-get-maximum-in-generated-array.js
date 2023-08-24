@@ -3,9 +3,9 @@
  * @return {number}
  */
 const getMaximumGenerated = (n) => {
-  const result = Array(n + 1).fill(0);
-  if (result.length < 2) return 0;
+  if (n < 2) return n;
 
+  const result = Array(n + 1).fill(0);
   result[1] = 1;
   let maxNum = 1;
 
@@ -19,6 +19,6 @@ const getMaximumGenerated = (n) => {
     }
     maxNum = Math.max(maxNum, result[i]);
   }
-console.log(result);
+
   return maxNum;
 };
