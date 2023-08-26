@@ -2,17 +2,17 @@
  * @param {number[]} nums
  * @return {number}
  */
-const rob = (nums) => {
-  if (nums.length < 3) return Math.max(...nums);
+const rob = function (nums) {
+  if (!nums.length) return 0;
+  if (nums.length === 1) return nums[0];
 
-  const dp = new Array(nums).fill(0);
-  dp[0] = nums[0];
-  dp[1] = nums[1];
-  dp[2] = nums[0] + nums[2];
-  
-  for (let i = 3; i < nums.length; i++) {
-    dp[i] = nums[i] + Math.max(dp[i - 2], dp[i - 3]);
+  const result = [];
+  result[0] = nums[0];
+  result[1] = Math.max(nums[0], nums[1]);
+
+  for (let i = 2; i < nums.length; i++) {
+    result[i] = Math.max(result[i - 1], result[i - 2] + nums[i]);
   }
-  
-  return Math.max(...dp);
+
+  return result[result.length - 1];
 };
