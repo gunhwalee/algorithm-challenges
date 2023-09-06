@@ -3,12 +3,13 @@
  * @return {number}
  */
 const climbStairs = function(n) {
-  if (n < 3) return n;
+  const dp = new Array(n + 1).fill(0);
 
-  const fib = [0, 1, 2];
-  for (let i = 3; i <= n; i += 1) {
-    fib[i] = fib[i - 1] + fib[i - 2];
+  dp[0] = 1;
+  dp[1] = 1;
+  for (let i = 2; i < dp.length; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
   }
 
-  return fib[n]
+  return dp.at(-1);
 };
