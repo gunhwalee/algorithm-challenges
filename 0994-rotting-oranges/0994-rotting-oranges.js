@@ -3,39 +3,38 @@
  * @return {number}
  */
 const orangesRotting = function(grid) {
-  let minutes = 0, fresh = 0;
+  let minute = 0;
+  let freshOrange = 0;
+  const direction = [[0, 1], [0, -1], [1, 0], [-1, 0]];
   const queue = [];
-  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-
-  for (let i = 0; i < grid.length; i += 1) {
-    for (let j = 0; j < grid[0].length; j += 1) {
-      if (grid[i][j] === 2) queue.push([i, j, minutes]);
-      if (grid[i][j] === 1) fresh += 1;
+  
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      if (grid[i][j] === 2) queue.push([i, j, minute]);
+      if (grid[i][j] === 1) freshOrange++;
     }
   }
-
+  
   while (queue.length) {
-    const [row, col, count] = queue.shift(); 
+    const [x, y, count] = queue.shift();
     
-    if (grid[row][col] === 1) {
-      grid[row][col] = 2;
-      fresh -= 1;
-      minutes = count;
+    if (grid[x][y] === 1) {
+      grid[x][y] = 2;
+      freshOrange--;
+      minute = count;
     }
-    
-    for (const direction of directions) {
-      const newRow = row + direction[0];
-      const newCol = col + direction[1];
+
+    for (const [dx, dy] of direction) {
+      const newX = x + dx;
+      const newY = y + dy;
       
-      if (newRow < 0 || newCol < 0 ||
-         newRow >= grid.length ||
-         newCol >= grid[0].length) continue;
+      if (newX < 0 || newY < 0 || newX >= grid.length || newY >= grid[0].length) continue;
       
-      if (grid[newRow][newCol] === 1) {
-        queue.push([newRow, newCol, minutes + 1]);
+      if (grid[newX][newY] === 1) {
+        queue.push([newX, newY, minute + 1]);
       }
     }
   }
-
-  return fresh ? -1 : minutes;
+  
+  return freshOrange ? -1 : minute;
 };
